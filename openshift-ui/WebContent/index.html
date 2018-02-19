@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/openshift.js"></script>
+</head>
+<body>
+<div ng-app = "mainApp" ng-controller = "controller">
+
+	<div class="container">
+	<br><br><br><br>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<form ng-submit="submitForm()">
+				  <div class="input-group">
+				    <span class="input-group-addon"><i class="fab fa-github"></i></span>
+				    <input id="email" type="url" class="form-control" name="url" placeholder="GitHub url" ng-model="github" required>
+				  </div><br>
+				  <div class="input-group">
+				    <span class="input-group-addon"><i class="fas fa-folder"></i></span>
+				    <input id="oproject" type="text" class="form-control" name="openshiftproject" placeholder="Openshift Project name" ng-model="oproject" required>
+				  </div><br>
+				  <div class="input-group">
+				    <span class="input-group-addon"><i class="fas fa-folder"></i></span>
+				    <input id="gproject" type="text" class="form-control" name="gtiproject" placeholder="project name" ng-model="gproject" required>
+				  </div>
+				  
+				  <br><br>
+				  <h4>Select the addons</h4>
+				    <div class="checkbox">
+				      <label><input type="checkbox" value="" ng-model="sonar">sonar</label>
+				    </div>
+				    <div class="checkbox">
+				      <label><input type="checkbox" value="" ng-model="nexus">nexus</label>
+				    </div>
+				  
+				  <br><br>
+				  <h4>Select the environments to deploy</h4>
+				    <div class="checkbox">
+				      <label><input type="checkbox" value="" ng-model="dev">dev</label>
+				    </div>
+				    <div class="checkbox">
+				      <label><input type="checkbox" value="" ng-model="uat">uat</label>
+				    </div>
+				    <div class="checkbox">
+				      <label><input type="checkbox" value="" ng-model="prod">prod</label>
+				    </div>
+  <br>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" ng-click="preview()">Jenkinsfile preview</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" ng-model="modalHeader" id="mHeader" style="text-align: center;">{{modalHeader}}<span ng-show="warningflag"><i class="fas fa-exclamation-triangle"></i></span></h4>
+        </div>
+        <div class="modal-body" ng-model="jenkinsfilePreview">
+          <p id="jpreview" style="text-align: center;">{{jenkinsfilePreview}}</p>
+        </div>
+        <div class="modal-footer" ng-hide="warningflag">
+          <button type="submit" class="btn btn-success">Download <i class="fas fa-download"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+			    </form>
+			    
+			</div>
+		</div>
+	
+	</div>
+	
+</div>
+
+</body>
+</html>
